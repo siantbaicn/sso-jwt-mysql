@@ -1,6 +1,6 @@
 
 #本demo在 《基于Spring Security Oauth2的SSO单点登录+JWT权限控制实践》的基础上修改，增加mysql数据库与jwt非对称加密
-oauth_admin/user
+oauth_admin/user   单点登录 code_sheep/123456
 ---
 ## 概 述
 
