@@ -14,6 +14,8 @@ public class CustomJwtTokenEnhancer implements TokenEnhancer {
 	  @Override
 	  public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 	    Map<String, Object> additionalInfo = new HashMap<>();
+	    
+	    String clientId=authentication.getOAuth2Request().getClientId();
 	    List<String> app1 = new ArrayList<String>(); 
 	    app1.add("rubin");
 	    app1.add("white");
@@ -22,7 +24,7 @@ public class CustomJwtTokenEnhancer implements TokenEnhancer {
 	    app2.add("white1");
 	    Map<String,Object> appIdResources = new HashMap<String,Object>();
 	    appIdResources.put("app1", app1);
-	    appIdResources.put("app2", app2);
+	    appIdResources.put("client_id", clientId);
 	    additionalInfo.put("resourceIds", appIdResources);
 	    ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);   
 	    return accessToken;
