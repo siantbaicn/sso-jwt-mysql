@@ -11,4 +11,12 @@ security:
       access-token-uri: ${auth-server}/oauth/token
     resource:
       jwt:
-        key-value: testKey
+        key-value: |
+              -----BEGIN PUBLIC KEY-----
+              MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlxe9BDiVkJ2F4dNGZcisCO4mqk0aN+03
+              B3xNYmzcUFjVIQvzfXvZqIhk2WMyqHRtNvL4VC2kTs9MrjGDDdhRL1hzGCQPPRGEdiyTfoNF9X38
+              oCiKnAiu1h7q8So3gcJ/Dor1n8dFgKnBOHRLgSsO+3Ox0rMXtHN5KAi8L3mr/rppuigmlNQRpuu2
+              u0Rj1+X515PDmG01/aMuxSBj5XsT49p9LKMT/rsQ0UzUtH/Nd9fWQBxrUDKVrXVIKHNflYVEwDJU
+              rSlSvNoHXGRanKoYILnet0DgGW5uMX6POUGfXBzN96CMAlAVMDfXQnjsP+DHgdi+36BICbk0QXAO
+              Qu27YwIDAQAB
+              -----END PUBLIC KEY-----

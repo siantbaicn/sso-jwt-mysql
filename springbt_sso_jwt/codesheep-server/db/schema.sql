@@ -91,3 +91,21 @@ CREATE TABLE authorities_resources (
   authorities_id varchar(64) not null,
   resources_id varchar(64) not null
 );
+
+DROP TABLE IF EXISTS `USER_INFO`;
+CREATE TABLE `USER_INFO` (
+  `user_id` varchar(49) NOT NULL COMMENT '用户id',
+  `login_user` varchar(32) NOT NULL COMMENT '账号',
+  `login_pwd` varchar(99) NOT NULL COMMENT '??????',
+  `staffname` varchar(32) DEFAULT NULL COMMENT '姓名',
+  `flag` varchar(2) DEFAULT NULL COMMENT '有效标志：默认为1；0--无效；1--有效',
+  `validlength` varchar(19) DEFAULT NULL COMMENT '有效期',
+  `expiredate` varchar(19) DEFAULT NULL COMMENT '失效时间',
+  `loglock` varchar(2) NOT NULL COMMENT '锁定状态（0禁用，1启用，9删除）',
+  `departmentcode` varchar(32) DEFAULT NULL COMMENT '所属部门（未启用）',
+  `workcode` varchar(32) DEFAULT NULL COMMENT '所属工作组（未启用）',
+  `note` varchar(128) DEFAULT NULL COMMENT '备注',
+  `user_group` varchar(32) DEFAULT NULL COMMENT '修改时间',
+  `user_role` varchar(32) DEFAULT NULL COMMENT '修改用户',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';

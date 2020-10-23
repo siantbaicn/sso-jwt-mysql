@@ -2,8 +2,10 @@ package cn.codesheep.config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -16,16 +18,19 @@ public class CustomJwtTokenEnhancer implements TokenEnhancer {
 	    Map<String, Object> additionalInfo = new HashMap<>();
 	    
 	    String clientId=authentication.getOAuth2Request().getClientId();
-	    List<String> app1 = new ArrayList<String>(); 
+	    String loginUser = authentication.getName();
+	    Set<String> app1 = new HashSet<String>();	    
+	    app1.add("rs_ydzbgkt");
 	    app1.add("rubin");
-	    app1.add("white");
+	    app1.add("ZBGKT");
 	    List<String> app2 = new ArrayList<String>();
-	    app2.add("rubin1");
-	    app2.add("white1");
-	    Map<String,Object> appIdResources = new HashMap<String,Object>();
-	    appIdResources.put("app1", app1);
-	    appIdResources.put("client_id", clientId);
-	    additionalInfo.put("resourceIds", appIdResources);
+	    app2.add("role_ydzbgkt_user");
+	    Map<String,Object> customInfo = new HashMap<String,Object>();
+	    customInfo.put("resources", app1);
+	    customInfo.put("authorities", app2);
+	    customInfo.put("client_id", clientId);
+	    customInfo.put("loginUser", loginUser);
+	    additionalInfo.put("customInfo", customInfo);
 	    ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);   
 	    return accessToken;
 	  }

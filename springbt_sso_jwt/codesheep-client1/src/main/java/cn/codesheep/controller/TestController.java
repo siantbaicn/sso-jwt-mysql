@@ -22,25 +22,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import cn.codesheep.config.ResourceIdService;
+
 @RestController
 public class TestController {	
     @Autowired
     private TokenStore tokenStore;
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private ResourceIdService resourceIdService;
     
     private OAuth2AccessToken oAuth2AccessToken;
 
     @GetMapping("/normal")
-    @PreAuthorize("hasAuthority('ROLE_NORMAL')")
+//    @PreAuthorize("hasAuthority('ROLE_NORMAL')")
+    @PreAuthorize("@resourceIdService.hasResourceId('rs_ydzbgktt')")
     public String normal( ) {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	OAuth2AuthenticationDetails details= (OAuth2AuthenticationDetails) authentication.getDetails();
         OAuth2AccessToken accessToken = tokenStore.readAccessToken(details.getTokenValue());
         Map<String,Object> additionalMap = accessToken.getAdditionalInformation();
-        Object resourceMap = additionalMap.get("resourceIds");
+        Object resourceMap = additionalMap.get("customInfo");
         Object keys = ((Map<String, Object>) resourceMap).keySet();
         Object clientId = ((Map<String, Object>) resourceMap).get("client_id");
+        System.out.println(clientId);
         return "normal permission test success !!!";
     }
 
@@ -53,7 +59,7 @@ public class TestController {
     	
 		String url = "http://127.0.0.1:8088/normal";
 		HttpHeaders requestHeaders = new HttpHeaders();
-		String token = accessToken.getValue();
+/*		String token = accessToken.getValue();
 		requestHeaders.add("Authorization", OAuth2AccessToken.BEARER_TYPE+" "+accessToken.getValue());
 		requestHeaders.add("Connection", "keep-alive");
 		requestHeaders.add("Accept", "application/json");
@@ -62,7 +68,7 @@ public class TestController {
 		HttpEntity<String> formEntity = new HttpEntity<String>(null, requestHeaders);
 		ResponseEntity<String> exchange = restTemplate.exchange(url,HttpMethod.GET,formEntity, String.class);
 		String body = exchange.getBody();
-		System.out.println(body);
+		System.out.println(body);*/
         return "medium permission test success !!!";
     }
 

@@ -1,6 +1,9 @@
 package cn.codesheep.service;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -46,5 +49,14 @@ public class SheepUserDetailsService implements UserDetailsService {
         return  user;
 
 
+    }
+    
+	@Value("${ftpInitValue}")
+	String ftpInitValue;
+    
+    @PostConstruct
+    public void init() {
+        String rubin = ftpInitValue;
+        System.out.println(rubin);
     }
 }

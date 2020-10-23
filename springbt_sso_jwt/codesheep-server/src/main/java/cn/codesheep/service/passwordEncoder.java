@@ -6,7 +6,7 @@ public class passwordEncoder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-         System.out.println(new BCryptPasswordEncoder().encode("123456"));
+         System.out.println(new BCryptPasswordEncoder().encode("db4a88#5310t"));
 	}
 
 }

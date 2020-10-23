@@ -2,12 +2,21 @@ server:
   port: 8085
   servlet:
     context-path: /uac
-    
-    
+  connectionTimeout: 300
+  tomcat:   
+    max-connections: 100   
+    accesslog:
+      enabled: true
+      directory: D://tomcat/logs
+      prefix: localhost_access_log
+      suffix: .txt
+      requestAttributesEnabled: true
+       
+
 spring:
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/rubindb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/rubin?autoReconnect=true&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
       username: rubin
       password: rubin
       initialization-mode: always
